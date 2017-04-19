@@ -13,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseAppCompatActivity {
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tabs)
@@ -32,6 +33,10 @@ public class MainActivity extends BaseAppCompatActivity {
         container.setAdapter(mSectionsPagerAdapter);
         tabs.setupWithViewPager(container);
 
+        updateTabLayoutIcons();
+    }
+
+    private void updateTabLayoutIcons() {
         for (int i = 0; i < tabs.getTabCount(); i++) {
             TabLayout.Tab tab = tabs.getTabAt(i);
             if (tab == null) continue;
@@ -39,15 +44,21 @@ public class MainActivity extends BaseAppCompatActivity {
             tab.setCustomView(R.layout.layout_custom_tab);
 
             if (i == 0) {
-                ((TextView) tab.getCustomView()).setText(tab.getText());
-                ((TextView) tab.getCustomView()).setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(ctx, R.drawable.ic_business_center_white_24dp), null, null, null);
+                TextView tabView = ((TextView) tab.getCustomView());
+                if(tabView == null) continue;
+
+                tabView.setText(tab.getText());
+                tabView.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(ctx, R.drawable.ic_business_center_white_24dp), null, null, null);
                 continue;
             }
 
-            if (i == 1) {
-                tab.setIcon(R.drawable.ic_check_white_24dp);
-                continue;
-            }
+            if (i != 1) continue;
+
+            TextView tabView = ((TextView) tab.getCustomView());
+            if(tabView == null) continue;
+
+            tabView.setText(tab.getText());
+            tabView.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(ctx, R.drawable.ic_check_white_24dp), null, null, null);
         }
     }
 }

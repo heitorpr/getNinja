@@ -35,6 +35,4 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
         if (position == 1) return ctx.getString(R.string.accepted);
         return null;
     }
-
-
 }
