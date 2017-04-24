@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import br.heitor.getninja.R;
+import br.heitor.getninja.collections.OfferCollection;
 import butterknife.ButterKnife;
 
 public class OfferListFragment extends BaseFragment {
@@ -26,5 +27,13 @@ public class OfferListFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, view);
         initVariables();
         return view;
+    }
+
+    @Override
+    protected void initVariables() {
+        super.initVariables();
+
+        OfferCollection collection = new OfferCollection();
+        collection.fetch();
     }
 }

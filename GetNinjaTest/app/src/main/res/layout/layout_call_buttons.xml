@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="horizontal">
 
     <TextView
-        style="@style/font_style.bold"
-        android:layout_width="0dip"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginRight="1dp"
-        android:layout_weight="1"
-        android:background="@color/white"
+        android:id="@+id/btn_telephone"
+        style="@style/font_style.button_white"
         android:drawableLeft="@drawable/ic_call_blue_24dp"
-        android:drawablePadding="@dimen/item_spacing"
-        android:gravity="center"
-        android:padding="@dimen/icon_spacing"
-        android:text="@string/action_call"
-        android:textAllCaps="true"
-        android:textColor="@color/blue" />
+        android:drawableStart="@drawable/ic_call_blue_24dp"
+        android:text="@string/action_call" />
+
+    <View
+        style="@style/view_separator.vertical.blue"
+        android:layout_width="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp" />
 
     <TextView
-        style="@style/font_style.bold"
-        android:layout_width="0dip"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="1dp"
-        android:layout_weight="1"
-        android:background="@color/white"
+        android:id="@+id/btn_whatsapp"
+        style="@style/font_style.button_white"
         android:drawableLeft="@drawable/whatsapp_blue_24dp"
-        android:drawablePadding="@dimen/item_spacing"
-        android:gravity="center"
-        android:padding="@dimen/icon_spacing"
-        android:text="@string/action_whatsapp"
-        android:textAllCaps="true"
-        android:textColor="@color/blue" />
-
+        android:drawableStart="@drawable/whatsapp_blue_24dp"
+        android:text="@string/action_whatsapp" />
 </LinearLayout>

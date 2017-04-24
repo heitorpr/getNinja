@@ -16,8 +16,23 @@ android {
         resConfigs "auto"
     }
     buildTypes {
+        def BOOLEAN = "boolean"
+        def STRING = "String"
+        def TRUE = "true"
+        def FALSE = "false"
+        def LOG_HTTP_REQUESTS = "LOG_HTTP_REQUESTS"
+        def API_URL = "API_URL"
+
+        debug {
+            buildConfigField BOOLEAN, LOG_HTTP_REQUESTS, TRUE
+            buildConfigField STRING, API_URL, '"http://testemobile.getninjas.com.br/"'
+        }
+
         release {
-            minifyEnabled false
+            buildConfigField BOOLEAN, LOG_HTTP_REQUESTS, FALSE
+            buildConfigField STRING, API_URL, '"https//testemobile.getninjas.com.br/"'
+
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -41,6 +56,9 @@ dependencies {
     compile "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
     compile "com.jakewharton:butterknife:8.5.1"
+
+    compile "com.birbit:android-priority-jobqueue:2.0.1"
+    compile "de.greenrobot:eventbus:2.4.1"
 
     testCompile "junit:junit:4.12"
     annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"
