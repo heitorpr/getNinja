@@ -5,22 +5,22 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.heitor.getninja.models.Offer;
+import br.heitor.getninja.models.Lead;
 
-public class OfferCollection extends Collection<Offer> {
-    @SerializedName("offers")
-    private List<Offer> list;
+public class LeadCollection extends Collection<Lead> {
+    @SerializedName("leads")
+    private List<Lead> list;
 
-    public OfferCollection() {
+    public LeadCollection() {
         this.list = new ArrayList<>();
     }
 
-    public List<Offer> getList() {
+    public List<Lead> getList() {
         return list;
     }
 
     @Override
-    public void setList(List<Offer> list) {
+    public void setList(List<Lead> list) {
         this.list = list;
     }
 
@@ -30,7 +30,7 @@ public class OfferCollection extends Collection<Offer> {
     }
 
     @Override
-    public Offer get(int position) {
+    public Lead get(int position) {
         return list.get(position);
     }
 }

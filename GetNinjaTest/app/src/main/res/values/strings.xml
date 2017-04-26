@@ -4,8 +4,10 @@
     <string name="exception_activity_name" translatable="false">The activity %s do not have a name</string>
     <string name="exception_fragment_name" translatable="false">The fragment %s do not have a name</string>
 
-    <string name="offers">Offers</string>
-    <string name="accepted">Accepted</string>
     <string name="action_call">Ligar</string>
     <string name="action_whatsapp">WhatsApp</string>
+
+    <string name="offers">Offers</string>
+    <string name="accepted">Accepted</string>
+    <string name="no_data">No data</string>
 </resources>

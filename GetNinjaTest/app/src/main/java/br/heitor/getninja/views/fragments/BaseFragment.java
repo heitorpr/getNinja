@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import butterknife.Unbinder;
+import de.greenrobot.event.EventBus;
 
 public abstract class BaseFragment extends Fragment {
     protected Context ctx;
@@ -11,6 +12,13 @@ public abstract class BaseFragment extends Fragment {
 
     protected void initVariables() {
         ctx = getActivity();
+        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this);
     }
 
     @Override

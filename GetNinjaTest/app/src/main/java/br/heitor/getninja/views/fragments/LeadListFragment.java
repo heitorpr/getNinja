@@ -1,20 +1,28 @@
 package br.heitor.getninja.views.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
+import br.heitor.getninja.Events.CollectionEvent;
 import br.heitor.getninja.R;
-import br.heitor.getninja.views.activities.ItemDetailActivity;
+import br.heitor.getninja.collections.LeadCollection;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LeadListFragment extends BaseFragment {
-    @BindView(R.id.txt_teste)
-    TextView txtTeste;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.blank_view)
+    RelativeLayout blankView;
+    @BindView(R.id.refreshLayout)
+    SwipeRefreshLayout refreshLayout;
+
+    private LeadCollection collection;
 
     public LeadListFragment() {
     }
@@ -32,15 +40,24 @@ public class LeadListFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, view);
         initVariables();
 
-
-        txtTeste.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ctx, ItemDetailActivity.class);
-                ctx.startActivity(intent);
-            }
-        });
-
         return view;
+    }
+
+    @Override
+    protected void initVariables() {
+        super.initVariables();
+        createCollection();
+    }
+
+    @SuppressWarnings("UnusedDeclaration")
+    public void onEventMainThread(CollectionEvent event) {
+        if (!event.getType().equals(collection.getClass())) return;
+        refreshLayout.setRefreshing(false);
+    }
+
+    private void createCollection() {
+        if (collection != null) return;
+        collection = new LeadCollection();
+        collection.fetch();
     }
 }

@@ -1,13 +1,14 @@
 package br.heitor.getninja.models;
 
-/**
- * Created by Heitor on 24/04/2017.
- */
-
 public class User {
     private String name;
+    private String email;
 
     public String getName() {
         return name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

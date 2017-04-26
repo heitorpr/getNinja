@@ -8,6 +8,7 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 import java.util.Date;
 
+import br.heitor.getninja.utils.DateUtils;
 import br.heitor.getninja.utils.Utils;
 
 class DateDeserializer implements JsonDeserializer<Date> {
@@ -16,6 +17,6 @@ class DateDeserializer implements JsonDeserializer<Date> {
         String myDate = je.getAsString();
 
         if (myDate == null || myDate.equals("null") || myDate.isEmpty()) return null;
-        return Utils.parseDateObject(myDate);
+        return DateUtils.parseDateObject(myDate);
     }
 }
