@@ -1,10 +1,12 @@
 package br.heitor.getninja.views.fragments;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
+import android.telephony.PhoneNumberUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,6 +105,20 @@ public class LeadDetailFragment extends BaseFragment {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + lead.getUser().getPhones().get(0).getNumber()));
                 startActivity(intent);
+            }
+        });
+
+        btnWhatsApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent("android.intent.action.MAIN");
+                sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
+
+                String phone = lead.getUser().getPhones().get(0).getNumber();
+                phone = PhoneNumberUtils.stripSeparators(phone);
+                sendIntent.putExtra("jid", "+55" + phone + "@s.whatsapp.net");
+
+                startActivity(sendIntent);
             }
         });
     }
