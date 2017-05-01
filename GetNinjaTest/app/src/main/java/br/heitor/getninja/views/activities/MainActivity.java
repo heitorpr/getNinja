@@ -27,6 +27,7 @@ public class MainActivity extends BaseAppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        toolbar.setTitle(R.string.orders);
         setSupportActionBar(toolbar);
 
         MainPagerAdapter mSectionsPagerAdapter = new MainPagerAdapter(ctx, getSupportFragmentManager());

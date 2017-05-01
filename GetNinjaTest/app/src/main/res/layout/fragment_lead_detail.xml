@@ -1,0 +1,183 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    app:cardBackgroundColor="@color/white">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linear_map"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@color/green"
+                android:orientation="vertical" />
+
+            <TextView
+                android:id="@+id/txt_title"
+                style="@style/font_style.title"
+                android:layout_below="@+id/linear_map"
+                android:layout_margin="@dimen/item_spacing" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/view_separator_header"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/txt_title"
+                android:layout_marginBottom="@dimen/item_spacing"
+                android:layout_marginLeft="@dimen/item_spacing"
+                android:layout_marginRight="@dimen/item_spacing"
+                android:contentDescription="@string/app_name"
+                android:layerType="software"
+                android:src="@drawable/dashed_separator" />
+
+            <RelativeLayout
+                android:id="@+id/relative_person"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_separator_header"
+                android:layout_marginBottom="@dimen/icon_spacing"
+                android:layout_marginLeft="@dimen/item_spacing"
+                android:layout_marginRight="@dimen/item_spacing">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/img_person_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_person_green_24dp" />
+
+                <TextView
+                    android:id="@+id/txt_person_name"
+                    style="@style/font_style.bold"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/icon_spacing"
+                    android:layout_toRightOf="@+id/img_person_name" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_person"
+                android:layout_marginBottom="@dimen/item_spacing"
+                android:layout_marginLeft="@dimen/item_spacing"
+                android:layout_marginRight="@dimen/item_spacing">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/img_person_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_place_green_24dp" />
+
+                <TextView
+                    android:id="@+id/txt_person_location"
+                    style="@style/font_style.bold"
+                    android:layout_marginLeft="@dimen/icon_spacing"
+                    android:layout_toRightOf="@+id/img_person_location" />
+
+                <TextView
+                    android:id="@+id/txt_extra_info"
+                    style="@style/font_style.light"
+                    android:layout_below="@+id/txt_person_location"
+                    android:layout_marginLeft="@dimen/icon_spacing"
+                    android:layout_toRightOf="@+id/img_person_location" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/view_separator"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/relative_location"
+                android:layout_marginLeft="@dimen/item_spacing"
+                android:layout_marginRight="@dimen/item_spacing"
+                android:contentDescription="@string/app_name"
+                android:layerType="software"
+                android:src="@drawable/dashed_separator" />
+
+            <LinearLayout
+                android:id="@+id/linear_extra_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_separator"
+                android:layout_margin="@dimen/item_spacing"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/linear_contact_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linear_extra_info"
+                android:background="@color/light_green"
+                android:orientation="vertical"
+                android:padding="@dimen/item_spacing">
+
+                <TextView
+                    style="@style/font_style.title"
+                    android:text="@string/client_contact" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_call_black_24dp" />
+
+                    <TextView
+                        android:id="@+id/txt_person_phone"
+                        style="@style/font_style.bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_email_black_24dp" />
+
+                    <TextView
+                        android:id="@+id/txt_person_email"
+                        style="@style/font_style.bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_info_unblock"
+                style="@style/font_style.bold"
+                android:layout_below="@+id/linear_contact_info"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/info_talk_to_client" />
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.v7.widget.CardView>

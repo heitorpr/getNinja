@@ -5,9 +5,12 @@
     <color name="colorAccent">@color/white</color>
     <color name="background">@color/blue</color>
 
+    <color name="light_blue">#a3e4fc</color>
     <color name="blue">#00B8FC</color>
+    <color name="light_green">#c3ff80</color>
     <color name="green">#90E135</color>
     <color name="white">#FFF</color>
     <color name="light_grey">#C4D3DA</color>
     <color name="medium_grey">#90A0AA</color>
+    <color name="black">#000</color>
 </resources>

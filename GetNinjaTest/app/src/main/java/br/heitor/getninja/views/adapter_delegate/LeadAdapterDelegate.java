@@ -12,7 +12,7 @@ import android.widget.TextView;
 import br.heitor.getninja.Events.ItemClickEvent;
 import br.heitor.getninja.R;
 import br.heitor.getninja.collections.Collection;
-import br.heitor.getninja.models.Offer;
+import br.heitor.getninja.models.Lead;
 import br.heitor.getninja.utils.DateUtils;
 import br.heitor.getninja.views.adapter.AbstractAdapterDelegate;
 import br.heitor.getninja.views.adapter.CustomAdapter;
@@ -20,53 +20,48 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
-public class OfferAdapterDelegate extends AbstractAdapterDelegate<Collection<Offer>> {
-    public OfferAdapterDelegate(Context ctx, CustomAdapter.ViewType viewType) {
+public class LeadAdapterDelegate extends AbstractAdapterDelegate<Collection<Lead>> {
+    public LeadAdapterDelegate(Context ctx, CustomAdapter.ViewType viewType) {
         super(ctx, viewType);
     }
 
     @Override
     public boolean isForViewType(@NonNull Collection items, int position) {
-        return items.get(position) instanceof Offer;
+        return items.get(position) instanceof Lead;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new OfferViewHolder(inflater.inflate(R.layout.row_lead_or_offer, parent, false));
+        return new LeadViewHolder(inflater.inflate(R.layout.row_lead_or_offer, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Collection<Offer> items, int position, @NonNull RecyclerView.ViewHolder viewHolder) {
-        Offer offer = items.get(position);
+    public void onBindViewHolder(@NonNull Collection<Lead> items, int position, @NonNull RecyclerView.ViewHolder viewHolder) {
+        Lead lead = items.get(position);
 
-        OfferViewHolder holder = (OfferViewHolder) viewHolder;
+        LeadViewHolder holder = (LeadViewHolder) viewHolder;
 
-        holder.txtTitle.setText(offer.getTitle());
-        holder.txtPersonName.setText(offer.getUser().getName());
-        holder.txtPersonDate.setText(DateUtils.format(offer.getCreated_at()));
-        holder.txtPersonLocation.setText(offer.getAddress().getNeighborhood());
+        holder.txtTitle.setText(lead.getTitle());
+        holder.txtPersonName.setText(lead.getUser().getName());
+        holder.txtPersonDate.setText(DateUtils.format(lead.getCreated_at()));
+        holder.txtPersonLocation.setText(lead.getAddress().getNeighborhood());
 
         setEvents(holder);
-        setIcons(offer, holder);
+        setIcons(lead, holder);
     }
 
-    private void setIcons(Offer offer, OfferViewHolder holder) {
-        if(offer.isRead()) {
-            setIconColors(holder, R.drawable.ic_person_grey_24dp, R.drawable.ic_place_grey_24dp);
-            return;
-        }
-
-        setIconColors(holder, R.drawable.ic_person_blue_24dp, R.drawable.ic_place_blue_24dp);
+    private void setIcons(Lead lead, LeadViewHolder holder) {
+        setIconColors(holder, R.drawable.ic_person_green_24dp, R.drawable.ic_place_green_24dp);
     }
 
-    private void setIconColors(OfferViewHolder holder, int resPerson, int resPlace) {
+    private void setIconColors(LeadViewHolder holder, int resPerson, int resPlace) {
         holder.imgPersonDate.setImageResource(resPerson);
         holder.imgPersonName.setImageResource(resPerson);
         holder.imgPersonLocation.setImageResource(resPlace);
     }
 
-    private void setEvents(final OfferViewHolder holder) {
+    private void setEvents(final LeadViewHolder holder) {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +70,7 @@ public class OfferAdapterDelegate extends AbstractAdapterDelegate<Collection<Off
         });
     }
 
-    class OfferViewHolder extends RecyclerView.ViewHolder {
+    class LeadViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.txt_title)
         TextView txtTitle;
         @BindView(R.id.view_separator)
@@ -97,7 +92,7 @@ public class OfferAdapterDelegate extends AbstractAdapterDelegate<Collection<Off
         @BindView(R.id.txt_person_location)
         TextView txtPersonLocation;
 
-        OfferViewHolder(View view) {
+        LeadViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }

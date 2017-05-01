@@ -1,77 +1,129 @@
 package br.heitor.getninja.models;
 
-import com.google.gson.annotations.SerializedName;
-
+import java.text.NumberFormat;
 import java.util.Date;
+import java.util.List;
+
+import br.heitor.getninja.Events.ItemUpdateEvent;
+import br.heitor.getninja.ProjectApplication;
+import br.heitor.getninja.R;
+import br.heitor.getninja.interfaces.InterfaceLead;
+import br.heitor.getninja.managers.ServiceGenerator;
+import br.heitor.getninja.managers.parser.LeadParser;
+import de.greenrobot.event.EventBus;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Lead {
+    private String state;
+    private String selfLink;
+    private String title;
+
     private Date created_at;
+    private int lead_price;
+    private double distance;
 
-    @SerializedName("_embedded")
-    private LeadData data;
+    private User user;
+    private Address address;
+    private List<InfoData> info;
 
-    @SerializedName("_links")
-    private OfferLink links;
+    public Lead() {
+    }
+
+    public static void fetch(final String link) {
+        InterfaceLead service = ServiceGenerator.createService(InterfaceLead.class);
+        service.fetch(link).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                EventBus.getDefault().post(new ItemUpdateEvent(link, LeadParser.parseFromSelf(response.body())));
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            }
+        });
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getSelfLink() {
+        return selfLink;
+    }
+
+    public void setSelfLink(String selfLink) {
+        this.selfLink = selfLink;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public Date getCreated_at() {
         return created_at;
     }
 
-    public String getTitle() {
-        return data.getTitle();
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
+
+    public int getLead_price() {
+        return lead_price;
+    }
+
+    public void setLead_price(int lead_price) {
+        this.lead_price = lead_price;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 
     public User getUser() {
-        return data.getUser();
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Address getAddress() {
-        return data.getAddress();
+        return address;
     }
 
-    public String getLink() {
-        return links.getSelfLink();
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    private class LeadData {
-        private OfferRequest request;
-        private Address address;
-        private User user;
-
-        String getTitle() {
-            return request.getTitle();
-        }
-
-        Address getAddress() {
-            return address;
-        }
-
-        User getUser() {
-            return user;
-        }
+    public List<InfoData> getInfo() {
+        return info;
     }
 
-    private class OfferRequest {
-        private String title;
-
-        String getTitle() {
-            return title;
-        }
+    public void setInfo(List<InfoData> info) {
+        this.info = info;
     }
 
-    private class OfferLink {
-        private SelfLink self;
+    public String getDistanceTextInKM() {
+        double km = getDistance()/1000;
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        numberFormat.setMaximumFractionDigits(0);
 
-        String getSelfLink() {
-            return self.getHref();
-        }
-
-        private class SelfLink {
-            String href;
-
-            String getHref() {
-                return href;
-            }
-        }
+        return String.format(ProjectApplication.getAppContext().getString(R.string.info_distance_in_km),
+                numberFormat.format(km));
     }
 }

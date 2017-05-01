@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Teste</string>
+    <string name="app_name" translatable="false">GetNinjaTest</string>
 
     <string name="exception_activity_name" translatable="false">The activity %s do not have a name</string>
     <string name="exception_fragment_name" translatable="false">The fragment %s do not have a name</string>
@@ -7,7 +7,16 @@
     <string name="action_call">Ligar</string>
     <string name="action_whatsapp">WhatsApp</string>
 
+    <string name="info_distance_in_km">%s Km from you</string>
+
     <string name="offers">Offers</string>
     <string name="accepted">Accepted</string>
     <string name="no_data">No data</string>
+    <string name="client_contact">Client Contact</string>
+    <string name="info_unblock_offer">Aceite o pedido para destravar o contato!</string>
+    <string name="info_talk_to_client">Fale com o cliente o quanto antes</string>
+    <string name="orders">Pedidos</string>
+    <string name="offer">Oferta</string>
+    <string name="action_refuse">Recusar</string>
+    <string name="action_accept">Aceitar</string>
 </resources>

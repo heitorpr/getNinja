@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import br.heitor.getninja.utils.ActivityNameHelper;
 import butterknife.Unbinder;
+import de.greenrobot.event.EventBus;
 
 public abstract class BaseAppCompatActivity extends AppCompatActivity {
     protected Context ctx;
@@ -20,8 +21,16 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         if (unbinder != null) unbinder.unbind();
+    }
+
+    protected void initVariables() {
     }
 }
